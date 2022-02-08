@@ -1,0 +1,36 @@
+﻿  compilation object save succeeded; see C:\Users\maxka\source\repos\Direct3D11\Direct3D11\ColorPixelShader.cso
+  compilation object save succeeded; see C:\Users\maxka\source\repos\Direct3D11\Direct3D11\ColorVertexShader.cso
+  compilation object save succeeded; see C:\Users\maxka\source\repos\Direct3D11\Direct3D11\LightingPixelShader.cso
+  compilation object save succeeded; see C:\Users\maxka\source\repos\Direct3D11\Direct3D11\LightingVertexShader.cso
+  compilation object save succeeded; see C:\Users\maxka\source\repos\Direct3D11\Direct3D11\TexturePixelShader.cso
+  compilation object save succeeded; see C:\Users\maxka\source\repos\Direct3D11\Direct3D11\TextureVertexShader.cso
+  Camera.cpp
+C:\Users\maxka\source\repos\Direct3D11\Direct3D11\Mesh.h(11,10): fatal error C1083: Cannot open include file: 'assimp/Importer.hpp': No such file or directory
+  D3D.cpp
+C:\Users\maxka\source\repos\Direct3D11\Direct3D11\D3D.cpp(50,2): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data
+C:\Users\maxka\source\repos\Direct3D11\Direct3D11\D3D.cpp(93,19): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+C:\Users\maxka\source\repos\Direct3D11\Direct3D11\D3D.cpp(94,20): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+C:\Users\maxka\source\repos\Direct3D11\Direct3D11\D3D.cpp(113,99): warning C4305: 'argument': truncation from 'unsigned int' to 'UINT8'
+C:\Users\maxka\source\repos\Direct3D11\Direct3D11\D3D.cpp(113,89): warning C4309: 'argument': truncation of constant value
+  GameObject.cpp
+C:\Users\maxka\source\repos\Direct3D11\Direct3D11\Mesh.h(11,10): fatal error C1083: Cannot open include file: 'assimp/Importer.hpp': No such file or directory
+  HUD.cpp
+C:\Users\maxka\source\repos\Direct3D11\Direct3D11\Mesh.h(11,10): fatal error C1083: Cannot open include file: 'assimp/Importer.hpp': No such file or directory
+  IndexBuffer.cpp
+  Light.cpp
+  main.cpp
+C:\Users\maxka\source\repos\Direct3D11\Direct3D11\Mesh.h(11,10): fatal error C1083: Cannot open include file: 'assimp/Importer.hpp': No such file or directory
+  Material.cpp
+  Mesh.cpp
+C:\Users\maxka\source\repos\Direct3D11\Direct3D11\Mesh.h(11,10): fatal error C1083: Cannot open include file: 'assimp/Importer.hpp': No such file or directory
+  ObjectModel.cpp
+C:\Users\maxka\source\repos\Direct3D11\Direct3D11\Mesh.h(11,10): fatal error C1083: Cannot open include file: 'assimp/Importer.hpp': No such file or directory
+  Time.cpp
+  VectorCalculation.cpp
+  VertexBuffer.cpp
+  WICTextureLoader11.cpp
+  Window.cpp
+C:\Users\maxka\source\repos\Direct3D11\Direct3D11\Window.cpp(24,37): warning C4838: conversion from 'UINT' to 'LONG' requires a narrowing conversion
+C:\Users\maxka\source\repos\Direct3D11\Direct3D11\Window.cpp(24,67): warning C4838: conversion from 'UINT' to 'LONG' requires a narrowing conversion
+C:\Users\maxka\source\repos\Direct3D11\Direct3D11\Window.cpp(24,95): warning C4838: conversion from 'UINT' to 'LONG' requires a narrowing conversion
+C:\Users\maxka\source\repos\Direct3D11\Direct3D11\Window.cpp(24,125): warning C4838: conversion from 'UINT' to 'LONG' requires a narrowing conversion

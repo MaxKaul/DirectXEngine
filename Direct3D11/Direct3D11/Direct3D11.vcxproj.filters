@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{8d3c407d-cc7d-4053-8be1-6ee57ccf7ccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Textures">
+      <UniqueIdentifier>{3cc157f6-70d9-4cd9-bab5-3c6b973a0fbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Fonts">
+      <UniqueIdentifier>{89f6ff99-764c-472d-be48-3f7329937e9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Nanosuit">
+      <UniqueIdentifier>{3210fa02-a00a-486e-b17d-b719b0e6ea47}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D3D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WICTextureLoader11.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VectorCalculation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Run.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WICTextureLoader11.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorCalculation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBufferTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Run.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="ColorVertexShader.hlsl">
+      <Filter>Resource Files</Filter>
+    </FxCompile>
+    <FxCompile Include="ColorPixelShader.hlsl">
+      <Filter>Resource Files</Filter>
+    </FxCompile>
+    <FxCompile Include="TexturePixelShader.hlsl">
+      <Filter>Resource Files</Filter>
+    </FxCompile>
+    <FxCompile Include="TextureVertexShader.hlsl">
+      <Filter>Resource Files</Filter>
+    </FxCompile>
+    <FxCompile Include="LightingVertexShader.hlsl">
+      <Filter>Resource Files</Filter>
+    </FxCompile>
+    <FxCompile Include="LightingPixelShader.hlsl">
+      <Filter>Resource Files</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="texture.png">
+      <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="nanosuit\arm_dif.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\arm_showroom_ddn.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\arm_showroom_spec.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\body_dif.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\body_showroom_ddn.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\body_showroom_spec.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\glass_ddn.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\glass_dif.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\hand_dif.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\hand_showroom_ddn.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\hand_showroom_spec.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\helmet_diff.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\helmet_showroom_ddn.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\helmet_showroom_spec.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\leg_dif.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\leg_showroom_ddn.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+    <Image Include="nanosuit\leg_showroom_spec.png">
+      <Filter>Assets\Nanosuit</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="arial_16.spritefont">
+      <Filter>Assets\Fonts</Filter>
+    </None>
+    <None Include="nanosuit\nanosuit.blend">
+      <Filter>Assets\Nanosuit</Filter>
+    </None>
+    <None Include="nanosuit\nanosuit.blend1">
+      <Filter>Assets\Nanosuit</Filter>
+    </None>
+    <None Include="nanosuit\nanosuit.mtl">
+      <Filter>Assets\Nanosuit</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="nanosuit\LICENSE.txt">
+      <Filter>Assets\Nanosuit</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
