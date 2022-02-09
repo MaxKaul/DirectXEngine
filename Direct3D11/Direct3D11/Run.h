@@ -31,7 +31,6 @@ private:
 	UINT height;
 	BOOL isFullScreen;
 
-
 	D3D d3d = {};
 	ID3D11Device* p_d3dDevice;
 	ID3D11DeviceContext* p_d3dContext;
@@ -45,14 +44,13 @@ private:
 	Camera camera = {};
 	Material material = {};
 	GameObject gameObject{};
-	Light::LightData lightData = {};
 
 	XMMATRIX* p_viewMatrix = camera.GetViewMatrix();
 	XMFLOAT4X4* p_worldMatrix = gameObject.GetWorldMatrix();
 	XMMATRIX* p_projectionMatrix = camera.GetProjectionMatrix();
 
 
-	UINT(Time::* p_fps)();
+	USHORT(Time::* p_fps)();
 
 	INT(D3D::* p_d3dEndScene)();
 

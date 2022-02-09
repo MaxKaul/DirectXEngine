@@ -2,27 +2,27 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\maxka\source\repos\Direct3D11\Direct3D11\x64\Debug\Direct3D11.exe</FullPath>
+      <FullPath>C:\Users\Student\Desktop\DirectXEngine\Direct3D11\Direct3D11\x64\Debug\Direct3D11.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>C:\Users\maxka\source\repos\Direct3D11\Direct3D11\ColorPixelShader.cso</FullPath>
+      <FullPath>C:\Users\Student\Desktop\DirectXEngine\Direct3D11\Direct3D11\ColorPixelShader.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\maxka\source\repos\Direct3D11\Direct3D11\ColorVertexShader.cso</FullPath>
+      <FullPath>C:\Users\Student\Desktop\DirectXEngine\Direct3D11\Direct3D11\ColorVertexShader.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\maxka\source\repos\Direct3D11\Direct3D11\LightingPixelShader.cso</FullPath>
+      <FullPath>C:\Users\Student\Desktop\DirectXEngine\Direct3D11\Direct3D11\LightingPixelShader.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\maxka\source\repos\Direct3D11\Direct3D11\LightingVertexShader.cso</FullPath>
+      <FullPath>C:\Users\Student\Desktop\DirectXEngine\Direct3D11\Direct3D11\LightingVertexShader.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\maxka\source\repos\Direct3D11\Direct3D11\TexturePixelShader.cso</FullPath>
+      <FullPath>C:\Users\Student\Desktop\DirectXEngine\Direct3D11\Direct3D11\TexturePixelShader.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\maxka\source\repos\Direct3D11\Direct3D11\TextureVertexShader.cso</FullPath>
+      <FullPath>C:\Users\Student\Desktop\DirectXEngine\Direct3D11\Direct3D11\TextureVertexShader.cso</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />

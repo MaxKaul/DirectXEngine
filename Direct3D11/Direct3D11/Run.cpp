@@ -27,8 +27,11 @@ INT Run::Init(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCmdLine, 
 	 error = time.Init();
 	 CheckError(error);
 
-	 error = material.Init(p_d3dDevice, TEXT("F:\\texture.png"), p_d3dContext);
+	 error = material.Init(p_d3dDevice, TEXT("texture.png"), p_d3dContext);
 	 CheckError(error);
+
+
+	 Light::LightData lightData = {};
 
 	 lightData.LightDirection = { -1.0f, 0.0f, 1.0f };
 	 //lightData.LightDirection = { *camera.DirX, *camera.DirY, *camera.DirZ };
@@ -38,7 +41,7 @@ INT Run::Init(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCmdLine, 
 	 error = light.Init(p_d3dDevice, lightData);
 	 CheckError(error);
 
-	 error = gameObject.Init("F:\\Robot.fbx", p_d3dDevice, p_d3dContext);
+	 error = gameObject.Init("FinalBaseMesh.obj", p_d3dDevice, p_d3dContext);
 	 CheckError(error);
 
 	 error = hud.Init(p_d3dDevice, p_d3dContext);
@@ -84,7 +87,7 @@ INT Run::RunApplication()
 
 		INT drawObj = (gameObject.*p_drawObj)();
 
-		INT drawFps = (hud.*p_hud)(fps, &camera, 3, true, true, true);
+		//INT drawFps = (hud.*p_hud)(fps, &camera, 3, true, true, true);
 
 
 		if (GetCursorPos(&mousePoint))

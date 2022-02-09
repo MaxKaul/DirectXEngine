@@ -18,14 +18,14 @@ public:
 	FLOAT DeInit();
 
 	FLOAT GetDeltaTime() { return deltaTime; }
-	UINT GetFPS() { return fps; }
+	USHORT GetFPS() { return fps; }
 
 private:
 	time_point lastTimeStamp = {};
 
 	FLOAT deltaTime = 0.0f;
 	FLOAT totalTime = 0.0f;
-	UINT fps = 0;
+	USHORT fps = 0;
 	FLOAT lastFps = 0;
 	FLOAT fpsTime = 0.0f;
 };

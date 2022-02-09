@@ -45,6 +45,9 @@ Mesh GameObject::ProcessMesh(aiMesh* _mesh, const aiScene* _scene)
 	std::vector<Vertex> vertices;
 	std::vector<UINT> indices;
 
+	vertices.reserve(_mesh->mNumVertices);
+	indices.reserve(_mesh->mNumFaces * 3);
+
 	for (UINT i = 0; i < _mesh->mNumVertices; i++)
 	{
 		Vertex vertex;

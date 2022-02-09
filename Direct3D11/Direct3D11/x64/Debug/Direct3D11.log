@@ -1,3 +1,3 @@
 ﻿  Camera.cpp
-LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/FORCE' specification
-  Direct3D11.vcxproj -> C:\Users\maxka\source\repos\Direct3D11\Direct3D11\x64\Debug\Direct3D11.exe
+LINK : warning LNK4075: /INCREMENTAL wird aufgrund der Angabe von /FORCE ignoriert.
+  Direct3D11.vcxproj -> C:\Users\Student\Desktop\DirectXEngine\Direct3D11\Direct3D11\x64\Debug\Direct3D11.exe

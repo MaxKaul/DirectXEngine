@@ -43,6 +43,9 @@ private:
 	FLOAT currMousePosX;
 	FLOAT currMousePosY;
 
+	FLOAT DEGUBx;
+	FLOAT DEGUBy;
+
 	FLOAT lastMousePosX;
 	FLOAT lastMousePosY;
 

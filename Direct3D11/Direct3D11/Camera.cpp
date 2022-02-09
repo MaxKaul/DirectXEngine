@@ -84,7 +84,7 @@ INT Camera::Update(FLOAT _dt)
 		if ((GetAsyncKeyState(VK_DOWN) & 0x8000) || (GetAsyncKeyState('S') & 0x8000))
 			AdjPosition(currBackward * camSpeed);
 
-		if ((GetAsyncKeyState(VK_LBUTTON) & 0x8000))
+		if ((GetAsyncKeyState(VK_LBUTTON) & 0x8000) && lastMousePosY != 0 && lastMousePosX != 0)
 			AdjRotation((lastMousePosY / 100) * camSpeed * 0.1f, (lastMousePosX / 100) * camSpeed * 0.1f, 0);
 
 
@@ -217,8 +217,8 @@ void Camera::SetMouseMousePos(FLOAT _x, FLOAT _y)
 	currMousePosX = _x;
 	currMousePosY = _y;
 
-	//lastMousePosX = currMousePosX;
-	//lastMousePosY = currMousePosY;
+	lastMousePosX = currMousePosX;
+	lastMousePosY = currMousePosY;
 }
 
 void Camera::UpdateViewMatrix()

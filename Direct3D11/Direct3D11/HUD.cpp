@@ -78,19 +78,19 @@ INT HUD::Draw_Text(UINT _p_fps,Camera* _p_cam, INT _p_lineAmount, BOOL _p_displa
 
 INT HUD::PrintMousePos(float _mousePosX, float _mousePosY)
 {
-	spriteBatch = std::make_unique<DirectX::SpriteBatch>(p_deviceContext);
-	spriteFont = std::make_unique<DirectX::SpriteFont>(p_device, L"arial_16.spritefont");
+	//spriteBatch = std::make_unique<DirectX::SpriteBatch>(p_deviceContext);
+	//spriteFont = std::make_unique<DirectX::SpriteFont>(p_device, L"arial_16.spritefont");
 
-	wstring posX = to_wstring(_mousePosX);
-	wstring posY = to_wstring(_mousePosY);
+	//wstring posX = to_wstring(_mousePosX);
+	//wstring posY = to_wstring(_mousePosY);
 
-	wstring output = TEXT("PosX: ") + posX + TEXT(" PosY: ") + posY;
+	//wstring output = TEXT("PosX: ") + posX + TEXT(" PosY: ") + posY;
 
-	spriteBatch->Begin();
+	//spriteBatch->Begin();
 
-	spriteFont->DrawString(spriteBatch.get(), output.c_str(), XMFLOAT2(0.0f, 0.0f), Colors::Red, 0.0f, XMFLOAT2(0.0f, 0.0f), XMFLOAT2(1.0f, 1.0f));
+	//spriteFont->DrawString(spriteBatch.get(), output.c_str(), XMFLOAT2(0.0f, 0.0f), Colors::Red, 0.0f, XMFLOAT2(0.0f, 0.0f), XMFLOAT2(1.0f, 1.0f));
 
-	spriteBatch->End();
+	//spriteBatch->End();
 
 
 	return 0;

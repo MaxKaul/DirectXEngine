@@ -1,7 +1,7 @@
 #pragma once
 #include"Window.h"
-#include "SpriteBatch.h"
-#include "SpriteFont.h"
+//#include "SpriteBatch.h"
+//#include "SpriteFont.h"
 #include <d3d11.h>
 #include "D3D.h"
 #include "Time.h"
@@ -25,8 +25,8 @@ private:
 	XMFLOAT3(Mesh::* p_objRot)() = 0;
 
 
-	std::unique_ptr<SpriteBatch> spriteBatch = 0;
-	std::unique_ptr<SpriteFont> spriteFont = 0;
+	//std::unique_ptr<SpriteBatch> spriteBatch = 0;
+	//std::unique_ptr<SpriteFont> spriteFont = 0;
 
 	ID3D11Device* p_device;
 	ID3D11DeviceContext* p_deviceContext;
