@@ -38,7 +38,7 @@ public:
 
 		D3D11_BUFFER_DESC indicesDesc = {};
 		indicesDesc.Usage = D3D11_USAGE_IMMUTABLE; // who has wich access
-		indicesDesc.ByteWidth = sizeof(USHORT) * indicesAmount;
+		indicesDesc.ByteWidth = sizeof(UINT) * indicesAmount;
 		indicesDesc.BindFlags = D3D11_BIND_INDEX_BUFFER; // buffer type
 		indicesDesc.CPUAccessFlags = 0;
 		indicesDesc.MiscFlags = 0;

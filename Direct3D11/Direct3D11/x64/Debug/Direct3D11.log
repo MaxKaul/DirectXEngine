@@ -1,3 +1,52 @@
 ﻿  Camera.cpp
+  GameObject.cpp
+  HUD.cpp
+  IndexBuffer.cpp
+  Material.cpp
+  Mesh.cpp
+F:\DirectXEngine\Direct3D11\Direct3D11\Mesh.cpp(20,77): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data
+F:\DirectXEngine\Direct3D11\Direct3D11\Mesh.cpp(21,2): warning C4003: not enough arguments for function-like macro invocation 'CheckFailed'
+F:\DirectXEngine\Direct3D11\Direct3D11\Mesh.cpp(23,66): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data
+F:\DirectXEngine\Direct3D11\Direct3D11\Mesh.cpp(24,2): warning C4003: not enough arguments for function-like macro invocation 'CheckFailed'
+F:\VisualStudio\VC\Tools\MSVC\14.29.30133\include\xutility(151,1): warning C4267: 'initializing': conversion from 'size_t' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=UINT
+          ]
+F:\VisualStudio\VC\Tools\MSVC\14.29.30133\include\memory(2021): message : see reference to function template instantiation 'void std::_Construct_in_place<_Ty,unsigned __int64>(_Ty &,unsigned __int64 &&) noexcept' being compiled
+          with
+          [
+              _Ty=UINT
+          ]
+F:\VisualStudio\VC\Tools\MSVC\14.29.30133\include\memory(2747): message : see reference to function template instantiation 'std::_Ref_count_obj2<_Ty>::_Ref_count_obj2<unsigned __int64>(unsigned __int64 &&)' being compiled
+          with
+          [
+              _Ty=UINT
+          ]
+F:\VisualStudio\VC\Tools\MSVC\14.29.30133\include\memory(2748): message : see reference to function template instantiation 'std::_Ref_count_obj2<_Ty>::_Ref_count_obj2<unsigned __int64>(unsigned __int64 &&)' being compiled
+          with
+          [
+              _Ty=UINT
+          ]
+F:\DirectXEngine\Direct3D11\Direct3D11\VertexBuffer.h(48): message : see reference to function template instantiation 'std::shared_ptr<UINT> std::make_shared<UINT,size_t>(size_t &&)' being compiled
+F:\DirectXEngine\Direct3D11\Direct3D11\VertexBuffer.h(46): message : while compiling class template member function 'HRESULT VertexBuffer<Vertex>::Init(ID3D11Device *,T *,UINT)'
+          with
+          [
+              T=Vertex
+          ]
+F:\DirectXEngine\Direct3D11\Direct3D11\Mesh.cpp(20): message : see reference to function template instantiation 'HRESULT VertexBuffer<Vertex>::Init(ID3D11Device *,T *,UINT)' being compiled
+          with
+          [
+              T=Vertex
+          ]
+F:\DirectXEngine\Direct3D11\Direct3D11\Mesh.h(35): message : see reference to class template instantiation 'VertexBuffer<Vertex>' being compiled
+  Run.cpp
+F:\DirectXEngine\Direct3D11\Direct3D11\Run.cpp(27,20): warning C4244: '=': conversion from 'FLOAT' to 'INT', possible loss of data
+F:\DirectXEngine\Direct3D11\Direct3D11\Run.cpp(75,23): warning C4244: 'initializing': conversion from 'INT' to 'FLOAT', possible loss of data
+F:\DirectXEngine\Direct3D11\Direct3D11\Run.cpp(93,13): warning C4244: 'initializing': conversion from 'LONG' to 'FLOAT', possible loss of data
+F:\DirectXEngine\Direct3D11\Direct3D11\Run.cpp(94,13): warning C4244: 'initializing': conversion from 'LONG' to 'FLOAT', possible loss of data
+  main.cpp
+  Generating Code...
+F:\DirectXEngine\Direct3D11\Direct3D11\GameObject.cpp(151): warning C4715: 'GameObject::Move': not all control paths return a value
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/FORCE' specification
-  Direct3D11.vcxproj -> C:\Users\maxka\source\repos\Direct3D11\Direct3D11\x64\Debug\Direct3D11.exe
+  Direct3D11.vcxproj -> F:\DirectXEngine\Direct3D11\Direct3D11\x64\Debug\Direct3D11.exe
