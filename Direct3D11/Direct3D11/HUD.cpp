@@ -76,15 +76,29 @@ INT HUD::Draw_Text(UINT _p_fps,Camera* _p_cam, INT _p_lineAmount, BOOL _p_displa
 	return 0;
 }
 
-INT HUD::PrintMousePos(float _mousePosX, float _mousePosY)
+INT HUD::PrintObjectSpawn_Debug(INT _amountOfSpawned, EGameObjectType _currentSelected)
 {
 	spriteBatch = std::make_unique<DirectX::SpriteBatch>(p_deviceContext);
-	spriteFont = std::make_unique<DirectX::SpriteFont>(p_device, L"arial_16.spritefont");
+	spriteFont = std::make_unique<DirectX::SpriteFont>(p_device, L"Assets\\fonts\\arial_16.spritefont");
 
-	wstring posX = to_wstring(_mousePosX);
-	wstring posY = to_wstring(_mousePosY);
+	wstring selected = L"";
 
-	wstring output = TEXT("PosX: ") + posX + TEXT(" PosY: ") + posY;
+	switch (_currentSelected)
+	{
+	case EGameObjectType::eCamera:
+		selected = L"Camera";
+		break;
+	case EGameObjectType::eRobot:
+		selected = L"Robot";
+		break;
+	case EGameObjectType::eNanosuit:
+		selected = L"Nanosuit";
+		break;
+	default:
+		break;
+	}
+	
+	wstring output = TEXT(" Select Nanosuit: P \n Select Robot:     O \n\n Press K to Spawn \n")  TEXT(" ") + selected + TEXT("\n\n Amount of Spawned: ") + to_wstring(_amountOfSpawned);
 
 	spriteBatch->Begin();
 

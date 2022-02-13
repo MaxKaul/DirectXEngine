@@ -2,6 +2,5 @@
 
 struct CB_VS_VertexShader
 {
-	
 
 };

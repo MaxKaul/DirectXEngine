@@ -16,14 +16,14 @@
     <Filter Include="Assets">
       <UniqueIdentifier>{8d3c407d-cc7d-4053-8be1-6ee57ccf7ccd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assets\Textures">
-      <UniqueIdentifier>{3cc157f6-70d9-4cd9-bab5-3c6b973a0fbf}</UniqueIdentifier>
+    <Filter Include="Assets\fonts">
+      <UniqueIdentifier>{01db301c-9cf5-4bc0-a990-9b3f8e5250ff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assets\Fonts">
-      <UniqueIdentifier>{89f6ff99-764c-472d-be48-3f7329937e9c}</UniqueIdentifier>
+    <Filter Include="Assets\textures">
+      <UniqueIdentifier>{4a243bac-2869-4c2b-bbd8-a1cf71b04c71}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assets\Nanosuit">
-      <UniqueIdentifier>{3210fa02-a00a-486e-b17d-b719b0e6ea47}</UniqueIdentifier>
+    <Filter Include="Assets\obj - fbx">
+      <UniqueIdentifier>{ad600f3a-0404-47e3-b4c9-085d8ba768b9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +70,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Run.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -134,6 +137,9 @@
     <ClInclude Include="Run.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="ColorVertexShader.hlsl">
@@ -156,78 +162,16 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="texture.png">
-      <Filter>Assets\Textures</Filter>
-    </Image>
-    <Image Include="nanosuit\arm_dif.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\arm_showroom_ddn.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\arm_showroom_spec.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\body_dif.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\body_showroom_ddn.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\body_showroom_spec.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\glass_ddn.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\glass_dif.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\hand_dif.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\hand_showroom_ddn.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\hand_showroom_spec.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\helmet_diff.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\helmet_showroom_ddn.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\helmet_showroom_spec.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\leg_dif.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\leg_showroom_ddn.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-    <Image Include="nanosuit\leg_showroom_spec.png">
-      <Filter>Assets\Nanosuit</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="arial_16.spritefont">
-      <Filter>Assets\Fonts</Filter>
+    <None Include="Assets\fonts\arial_16.spritefont">
+      <Filter>Assets\fonts</Filter>
     </None>
-    <None Include="nanosuit\nanosuit.blend">
-      <Filter>Assets\Nanosuit</Filter>
-    </None>
-    <None Include="nanosuit\nanosuit.blend1">
-      <Filter>Assets\Nanosuit</Filter>
-    </None>
-    <None Include="nanosuit\nanosuit.mtl">
-      <Filter>Assets\Nanosuit</Filter>
+    <None Include="Assets\obj - fbx\Robot.fbx">
+      <Filter>Assets\obj - fbx</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="nanosuit\LICENSE.txt">
-      <Filter>Assets\Nanosuit</Filter>
-    </Text>
+    <Image Include="Assets\textures\texture.png">
+      <Filter>Assets\textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

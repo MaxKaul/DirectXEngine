@@ -29,7 +29,7 @@ struct Vertex
 		color.x = 1;
 		color.y = 1;
 		color.z = 1;
-		color.w = 0;
+		color.w = 1;
 	}
 
 	/// <summary>
@@ -67,7 +67,7 @@ struct Vertex
 		color.x = 1;
 		color.y = 1;
 		color.z = 1;
-		color.w = 0;
+		color.w = 1;
 	}
 
 	/// <summary>
@@ -86,6 +86,6 @@ struct Vertex
 		color.x = 1;
 		color.y = 1;
 		color.z = 1;
-		color.w = 0;
+		color.w = 1;
 	}
 };

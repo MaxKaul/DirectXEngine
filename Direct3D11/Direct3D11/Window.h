@@ -12,8 +12,12 @@ public:
 
 	HWND GetWindowHandle() { return p_hWnd; }
 
+	bool IsMouseMoving() { return mouseMovement; };
+
 private:
 	HWND p_hWnd = nullptr;
+
+	bool mouseMovement = false;
 };
 
 LRESULT CALLBACK WndProc(HWND _hWnd, UINT _msg, WPARAM _wParam, LPARAM _lParam);

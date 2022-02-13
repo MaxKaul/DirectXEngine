@@ -4,17 +4,8 @@
 #include <iostream>
 #include <string>
 
-
-INT Mesh::Init()
+Mesh::Mesh(ID3D11Device* _p_device, std::vector<Vertex>& _vertices, std::vector<UINT>& _indeces)
 {
-
-	return 0;
-}
-
-
-Mesh::Mesh(ID3D11Device* _p_device, ID3D11DeviceContext* _p_deviceContext, std::vector<Vertex>& _vertices, std::vector<UINT>& _indeces)
-{
-	p_deviceContext = _p_deviceContext;
 	p_device = _p_device;
 
 	HRESULT hr = vertexBuffer.Init(p_device, _vertices.data(), _vertices.size());
@@ -24,21 +15,13 @@ Mesh::Mesh(ID3D11Device* _p_device, ID3D11DeviceContext* _p_deviceContext, std::
 	CheckFailed(hr);
 }
 
-Mesh::Mesh(const Mesh & _mesh)
-{
-	vertexBuffer = _mesh.vertexBuffer;
-	indexBuffer = _mesh.indexBuffer;
-	p_deviceContext = _mesh.p_deviceContext;;
-	p_device = _mesh.p_device;;
-}
-
-void Mesh::Draw()
+void Mesh::Draw(ID3D11DeviceContext* _p_deviceContext)
 {
 	static UINT offset = 0;
-	p_deviceContext->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), vertexBuffer.StridePtr(), &offset);
-	p_deviceContext->IASetIndexBuffer(indexBuffer.Get(), DXGI_FORMAT_R32_UINT, offset);
+	_p_deviceContext->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), vertexBuffer.StridePtr(), &offset);
+	_p_deviceContext->IASetIndexBuffer(indexBuffer.Get(), DXGI_FORMAT_R32_UINT, offset);
 
-	p_deviceContext->DrawIndexed(indexBuffer.BufferSize(), 0, 0);
+	_p_deviceContext->DrawIndexed(indexBuffer.BufferSize(), 0, 0);
 }
 
 INT Mesh::Update(FLOAT _dt)

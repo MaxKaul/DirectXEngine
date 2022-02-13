@@ -1,7 +1,10 @@
  #include "Material.h"
 
+
 INT Material::Init(ID3D11Device* _p_d3dDevice, LPCTSTR _textureName, ID3D11DeviceContext* _p_d3dDeviceContext)
 {
+	p_deviceContext = _p_d3dDeviceContext;
+
 	INT error = CreateVertexShader(_p_d3dDevice);
 	CheckError(error);
 
@@ -13,11 +16,10 @@ INT Material::Init(ID3D11Device* _p_d3dDevice, LPCTSTR _textureName, ID3D11Devic
 
 	error = CreateTextureAndSampler(_p_d3dDevice, _textureName);
 	CheckError(error);
-
 	return 0;
 }
 
-INT Material::Render(ID3D11DeviceContext* _p_d3dDeviceContext, XMFLOAT4X4* _p_worldMatrix, XMMATRIX* _p_viewMatrix, XMMATRIX* _p_projectionMatrix)
+INT Material::Render(ID3D11DeviceContext* _p_d3dDeviceContext, XMMATRIX* _p_worldMatrix, XMMATRIX* _p_viewMatrix, XMMATRIX* _p_projectionMatrix)
 {
 	//Set texture and Sampler State
 	_p_d3dDeviceContext->PSSetShaderResources(0, 1, &p_Texture);
@@ -42,6 +44,7 @@ void Material::DeInit()
 	SafeRelease<ID3D11PixelShader>(p_PixelShader);
 	SafeRelease<ID3D11VertexShader>(p_VertexShader);
 }
+
 
 INT Material::CreateVertexShader(ID3D11Device* _p_d3dDevice)
 {
@@ -129,9 +132,9 @@ INT Material::CreateMatrixBuffer(ID3D11Device* _p_d3dDevice, ID3D11DeviceContext
 	return 0;
 }
 
-INT Material::SetMatricesAndConstBuffer(ID3D11DeviceContext* _p_d3dDeviceContext, XMFLOAT4X4* _p_worldMatrix, XMMATRIX* _p_viewMatrix, XMMATRIX* _p_projectionMatrix)
+INT Material::SetMatricesAndConstBuffer(ID3D11DeviceContext* _p_d3dDeviceContext, XMMATRIX* _p_worldMatrix, XMMATRIX* _p_viewMatrix, XMMATRIX* _p_projectionMatrix)
 {
-	if(!(constantBuffer.ApplyChanges(_p_worldMatrix, *_p_viewMatrix, *_p_projectionMatrix)))
+	if(!(constantBuffer.ApplyChanges(_p_worldMatrix, _p_viewMatrix, _p_projectionMatrix, p_deviceContext)))
 		return 0;
 
 	_p_d3dDeviceContext->VSSetConstantBuffers(0, 1, constantBuffer.GetAddressOf());

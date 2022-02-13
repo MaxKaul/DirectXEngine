@@ -13,6 +13,7 @@ public:
 	INT Update(FLOAT _dt);
 
 	XMMATRIX* GetViewMatrix();
+	XMMATRIX* GetWorldMatrix();
 	XMMATRIX* GetProjectionMatrix();
 
 	XMVECTOR GetPosVector();
@@ -54,6 +55,7 @@ private:
 	
 	XMMATRIX viewMatrix = {};
 	XMMATRIX projectionMatrix = {};
+	XMMATRIX worldMatrix = {};
 
 	XMVECTOR defaultForward = XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
 	XMVECTOR defaultBackward = XMVectorSet(0.0f, 0.0f, -1.0f, 0.0f);

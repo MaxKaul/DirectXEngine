@@ -1,12 +1,12 @@
 #pragma once
 #include <wrl/client.h>
-#include <vector>
 #include "D3D.h"
+
 
 class IndexBuffer
 {
 private:
-	IndexBuffer(const IndexBuffer& rhs);
+	//IndexBuffer(const IndexBuffer& rhs);
 
 	Microsoft::WRL::ComPtr<ID3D11Buffer> buffer;
 	UINT bufferSize;

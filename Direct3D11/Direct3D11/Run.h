@@ -5,10 +5,9 @@
 #include "Utils.h"
 #include "Camera.h"
 #include "Time.h"
-#include "Material.h"
 #include "Light.h"
 #include "HUD.h"
-#include "GameObject.h"
+#include "GameObjectManager.h"
 
 class Run
 {
@@ -20,12 +19,16 @@ public:
 private:
 	INT RunApplication();
 
+	INT amountOfGo = 3;
+
+	FLOAT spawnOffset = 5;
 
 	int nCmdShow;
 	LPSTR lpCmdLine;
 	HINSTANCE hInstance;
 	HINSTANCE hPrevInstance;
 
+	EGameObjectType debugSpawnObj = EGameObjectType::eNanosuit;
 
 	UINT width;
 	UINT height;
@@ -33,8 +36,8 @@ private:
 
 
 	D3D d3d = {};
-	ID3D11Device* p_d3dDevice;
-	ID3D11DeviceContext* p_d3dContext;
+	ID3D11Device* p_device;
+	ID3D11DeviceContext* p_deviceContext;
 
 	POINT mousePoint;
 
@@ -44,11 +47,16 @@ private:
 	Window window = {};
 	Camera camera = {};
 	Material material = {};
+
 	GameObject gameObject{};
+
 	Light::LightData lightData = {};
+	//GameObjectManager goManager = {};
+
+	HWND windowHandle = window.GetWindowHandle();
 
 	XMMATRIX* p_viewMatrix = camera.GetViewMatrix();
-	XMFLOAT4X4* p_worldMatrix = gameObject.GetWorldMatrix();
+	XMMATRIX* p_worldMatrix = camera.GetWorldMatrix();
 	XMMATRIX* p_projectionMatrix = camera.GetProjectionMatrix();
 
 
@@ -64,9 +72,15 @@ private:
 
 	BOOL(Window::* p_windowUpdate)();
 
-	INT(GameObject::* p_moveObj)(FLOAT);
+	//INT(GameObjectManager::* p_draw)();
+	INT(GameObject::* p_moveObj)();
 
 	INT(Camera::* p_cameraUpdate)(FLOAT);
+
+	//INT(GameObjectManager::* p_amountSpawned)();
+
+
+	INT(HUD::* p_debugPrint)(INT, EGameObjectType);
 
 	INT(D3D::* p_d3dBeginScene)(FLOAT, FLOAT, FLOAT);
 
@@ -74,6 +88,8 @@ private:
 
 	INT(HUD::* p_hud)(UINT, Camera*, INT, BOOL, BOOL, BOOL);
 
-	INT(Material::* p_materialRender)(ID3D11DeviceContext*, XMFLOAT4X4*, XMMATRIX*, XMMATRIX*);
+	//INT(GameObjectManager::* p_spawnObject)(EGameObjectType);
+
+	INT(Material::* p_materialRender)(ID3D11DeviceContext*, XMMATRIX*, XMMATRIX*, XMMATRIX*);
 };
 

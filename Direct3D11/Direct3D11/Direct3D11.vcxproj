@@ -167,6 +167,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="D3D.cpp" />
+    <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="Light.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="ConstantBufferTypes.h" />
     <ClInclude Include="D3D.h" />
+    <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="Light.h" />
@@ -266,33 +268,11 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="nanosuit\arm_dif.png" />
-    <Image Include="nanosuit\arm_showroom_ddn.png" />
-    <Image Include="nanosuit\arm_showroom_spec.png" />
-    <Image Include="nanosuit\body_dif.png" />
-    <Image Include="nanosuit\body_showroom_ddn.png" />
-    <Image Include="nanosuit\body_showroom_spec.png" />
-    <Image Include="nanosuit\glass_ddn.png" />
-    <Image Include="nanosuit\glass_dif.png" />
-    <Image Include="nanosuit\hand_dif.png" />
-    <Image Include="nanosuit\hand_showroom_ddn.png" />
-    <Image Include="nanosuit\hand_showroom_spec.png" />
-    <Image Include="nanosuit\helmet_diff.png" />
-    <Image Include="nanosuit\helmet_showroom_ddn.png" />
-    <Image Include="nanosuit\helmet_showroom_spec.png" />
-    <Image Include="nanosuit\leg_dif.png" />
-    <Image Include="nanosuit\leg_showroom_ddn.png" />
-    <Image Include="nanosuit\leg_showroom_spec.png" />
-    <Image Include="texture.png" />
+    <None Include="Assets\fonts\arial_16.spritefont" />
+    <None Include="Assets\obj - fbx\Robot.fbx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="arial_16.spritefont" />
-    <None Include="nanosuit\nanosuit.blend" />
-    <None Include="nanosuit\nanosuit.blend1" />
-    <None Include="nanosuit\nanosuit.mtl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="nanosuit\LICENSE.txt" />
+    <Image Include="Assets\textures\texture.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -9,6 +9,10 @@ INT Camera::Init(UINT _screenWidth, UINT _screenHeight, FLOAT _degree, FLOAT _ne
 	rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	vectorRot = XMLoadFloat3(&rot);
 
+	//XMStoreFloat4x4(&worldMatrix, XMMatrixIdentity());
+
+	worldMatrix = XMMatrixIdentity();
+
 
 	//	// View Matrix
 	//	XMMATRIX viewMat = XMMatrixLookToLH(
@@ -37,6 +41,11 @@ INT Camera::Init(UINT _screenWidth, UINT _screenHeight, FLOAT _degree, FLOAT _ne
 XMMATRIX* Camera::GetViewMatrix()
 {
 	return &viewMatrix;
+}
+
+XMMATRIX* Camera::GetWorldMatrix()
+{
+	return &worldMatrix;
 }
 
 XMMATRIX* Camera::GetProjectionMatrix()

@@ -17,15 +17,17 @@ using namespace DirectX;
 class Mesh
 {
 public:
-	INT Init();
 	INT Update(FLOAT _dt);
 	INT DeInit();
 
-	void Draw();
+	void Draw(ID3D11DeviceContext* _p_deviceContext);
 
 	Mesh();
-	Mesh(const Mesh & _mesh);
-	Mesh(ID3D11Device* _device, ID3D11DeviceContext* _deviceContext, std::vector<Vertex> & _vertices, std::vector<UINT> & _indeces);
+	Mesh(const Mesh& rhs)
+	{
+		memcpy(this, &rhs, sizeof(Mesh));
+	};
+	Mesh(ID3D11Device* _device, std::vector<Vertex> & _vertices, std::vector<UINT> & _indeces);
 
 
 private:

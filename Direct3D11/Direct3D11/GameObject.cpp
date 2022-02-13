@@ -1,18 +1,27 @@
 #include "GameObject.h"
 
-bool GameObject::Init(const std::string& _filePath, ID3D11Device* _p_device, ID3D11DeviceContext* _p_deviceContext)
+int GameObject::Init(std::string _meshFilePath, std::string _textureFilePath, ID3D11Device* _p_device, ID3D11DeviceContext* _p_deviceContext, XMMATRIX* _p_wMatrix, XMMATRIX* _p_vMatrix, XMMATRIX* _p_pMatrix)
 {
 	p_device = _p_device;
 	p_deviceContext = _p_deviceContext;
 
-	//Initialize World Transformation-Matrix
-	XMStoreFloat4x4(&worldMatrix, XMMatrixIdentity());
+	//Initialize Position Transformation-Matrix
+	XMStoreFloat4x4(&positionMatrix, XMMatrixIdentity());
 
-	LoadModel(_filePath);
-	return false;
+	material.Init(_p_device, L"Assets\\textures\\texture.png", _p_deviceContext);
+
+	p_materialRender = &Material::Render;
+
+	Debug_Matrix_World = _p_wMatrix;
+	Debug_Matrix_View = _p_vMatrix;
+	Debug_Matrix_Projection = _p_pMatrix;
+
+	LoadModel(_meshFilePath);
+
+	return 0;
 }
 
-bool GameObject::LoadModel(const std::string& _filePath)
+bool GameObject::LoadModel(std::string& _filePath)
 {
 	Assimp::Importer importer;
 
@@ -78,26 +87,29 @@ Mesh GameObject::ProcessMesh(aiMesh* _mesh, const aiScene* _scene)
 		}
 	}
 
-	return Mesh(this->p_device, p_deviceContext, vertices, indices);
+	return Mesh(this->p_device, vertices, indices);
 }
 
 INT GameObject::Draw()
 {
 	//Set Mesh Data
 
+	//INT renderMaterial = (*currentMat.*p_materialRender)(p_deviceContext, Debug_Matrix_World, Debug_Matrix_View, Debug_Matrix_Projection);
+
 	for (int i = 0; i < meshes.size(); i++)
 	{
-		meshes[i].Draw();
+		//material.Render(p_deviceContext, Debug_Matrix_World, Debug_Matrix_View, Debug_Matrix_Projection);
+		meshes[i].Draw(p_deviceContext);
 	}
 
 	return 0;
 }
 
-INT GameObject::Move(FLOAT _dt)
+INT GameObject::Move()
 {
 	//rotY += XM_PI / 3.0f * _dt;
 
-	FLOAT move = 5.0f * _dt;;
+	FLOAT move = 5.0f;
 
 	if (!(GetAsyncKeyState(VK_MBUTTON) & 0x8000))
 	{
@@ -139,12 +151,12 @@ INT GameObject::Move(FLOAT _dt)
 		//	rotZ = 0;
 		//}
 
-		XMMATRIX translation = XMMatrixTranslation(posX, posY, posZ);
-		XMMATRIX rotation = XMMatrixRotationRollPitchYaw(rotX, rotY, rotZ);
-		XMMATRIX localScale = XMMatrixScaling(1.0f, 1.0f, 1.0f);
+		//XMMATRIX translation = XMMatrixTranslation(posX, posY, posZ);
+		//XMMATRIX rotation = XMMatrixRotationRollPitchYaw(rotX, rotY, rotZ);
+		//XMMATRIX localScale = XMMatrixScaling(1.0f, 1.0f, 1.0f);
 
 
-		XMStoreFloat4x4(&worldMatrix, localScale * rotation * translation);
+		//XMStoreFloat4x4(&positionMatrix, localScale * rotation * translation);
 
 		return 0;
 	}

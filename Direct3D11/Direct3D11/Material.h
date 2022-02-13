@@ -15,22 +15,25 @@ using namespace DirectX;
 class Material
 {
 public:
+	//Material(ID3D11Device* _p_d3dDevice, LPCTSTR _textureName, ID3D11DeviceContext* _p_d3dDeviceContext);
 	INT Init(ID3D11Device* _p_d3dDevice, LPCTSTR _textureName, ID3D11DeviceContext* _p_d3dDeviceContext);
-	INT Render(ID3D11DeviceContext* _p_d3dDeviceContext, XMFLOAT4X4* _p_worldMatrix, XMMATRIX* _p_viewMatrix, XMMATRIX* _p_projectionMatrix);
+	INT Render(ID3D11DeviceContext* _p_d3dDeviceContext, XMMATRIX* _p_worldMatrix, XMMATRIX* _p_viewMatrix, XMMATRIX* _p_projectionMatrix);
 	void DeInit();
 
+	Material() {};
 private:
 
 	INT CreateVertexShader(ID3D11Device* _p_d3dDevice);
 	INT CreatePixelShader(ID3D11Device* _p_d3dDevice);
 	INT CreateInputLayout(ID3D11Device* _p_d3dDevice, ID3DBlob* _p_vertexShaderData);
 	INT CreateMatrixBuffer(ID3D11Device* _p_d3dDevice, ID3D11DeviceContext* _p_d3dDeviceContext);
-	INT SetMatricesAndConstBuffer(ID3D11DeviceContext* _p_d3dDeviceContext, XMFLOAT4X4* _p_worldMatrix, XMMATRIX* _p_viewMatrix, XMMATRIX* _p_projectionMatrix);
+	INT SetMatricesAndConstBuffer(ID3D11DeviceContext* _p_d3dDeviceContext, XMMATRIX* _p_worldMatrix, XMMATRIX* _p_viewMatrix, XMMATRIX* _p_projectionMatrix);
 	INT CreateTextureAndSampler(ID3D11Device* _p_d3dDevice, LPCTSTR _textureName);
 
 	ID3D11VertexShader* p_VertexShader = nullptr;
 	ID3D11PixelShader* p_PixelShader = nullptr;
 	ID3D11InputLayout* p_InputLayout = nullptr;
+	ID3D11DeviceContext* p_deviceContext = nullptr;
 
 	ConstantBuffer<CB_VS_VertexShader> constantBuffer;
 
