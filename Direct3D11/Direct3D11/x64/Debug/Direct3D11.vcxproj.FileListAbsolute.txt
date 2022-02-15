@@ -1,2 +1,1 @@
-C:\Users\maxka\source\repos\Direct3D11\Direct3D11\x64\Debug\Direct3D11.exe
 F:\DirectXEngine\Direct3D11\Direct3D11\x64\Debug\Direct3D11.exe

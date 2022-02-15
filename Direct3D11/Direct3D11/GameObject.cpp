@@ -1,14 +1,12 @@
 #include "GameObject.h"
 
-int GameObject::Init(std::string _meshFilePath, std::string _textureFilePath, ID3D11Device* _p_device, ID3D11DeviceContext* _p_deviceContext, XMMATRIX* _p_wMatrix, XMMATRIX* _p_vMatrix, XMMATRIX* _p_pMatrix)
+int GameObject::Init(const std::string _meshFilePath, std::string _textureFilePath, ID3D11Device* _p_device, ID3D11DeviceContext* _p_deviceContext, XMMATRIX* _p_wMatrix, XMMATRIX* _p_vMatrix, XMMATRIX* _p_pMatrix)
 {
 	p_device = _p_device;
 	p_deviceContext = _p_deviceContext;
 
 	//Initialize Position Transformation-Matrix
 	XMStoreFloat4x4(&positionMatrix, XMMatrixIdentity());
-
-	material.Init(_p_device, L"Assets\\textures\\texture.png", _p_deviceContext);
 
 	p_materialRender = &Material::Render;
 
@@ -21,7 +19,25 @@ int GameObject::Init(std::string _meshFilePath, std::string _textureFilePath, ID
 	return 0;
 }
 
-bool GameObject::LoadModel(std::string& _filePath)
+//GameObject::GameObject(std::string _meshFilePath, std::string _textureFilePath, ID3D11Device* _p_device, ID3D11DeviceContext* _p_deviceContext, XMMATRIX* _p_wMatrix, XMMATRIX* _p_vMatrix, XMMATRIX* _p_pMatrix)
+//{
+//	p_device = _p_device;
+//	p_deviceContext = _p_deviceContext;
+//
+//	//Initialize Position Transformation-Matrix
+//	XMStoreFloat4x4(&positionMatrix, XMMatrixIdentity());
+//
+//	p_materialRender = &Material::Render;
+//
+//	Debug_Matrix_World = _p_wMatrix;
+//	Debug_Matrix_View = _p_vMatrix;
+//	Debug_Matrix_Projection = _p_pMatrix;
+//
+//	LoadModel(_meshFilePath);
+//
+//}
+
+bool GameObject::LoadModel(const std::string& _filePath)
 {
 	Assimp::Importer importer;
 
@@ -87,7 +103,7 @@ Mesh GameObject::ProcessMesh(aiMesh* _mesh, const aiScene* _scene)
 		}
 	}
 
-	return Mesh(this->p_device, vertices, indices);
+	return Mesh(this->p_device,this->p_deviceContext, vertices, indices);
 }
 
 INT GameObject::Draw()

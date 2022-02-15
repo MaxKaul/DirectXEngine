@@ -17,9 +17,6 @@ using namespace DirectX;
 class Mesh
 {
 public:
-	INT Update(FLOAT _dt);
-	INT DeInit();
-
 	void Draw(ID3D11DeviceContext* _p_deviceContext);
 
 	Mesh();
@@ -27,14 +24,13 @@ public:
 	{
 		memcpy(this, &rhs, sizeof(Mesh));
 	};
-	Mesh(ID3D11Device* _device, std::vector<Vertex> & _vertices, std::vector<UINT> & _indeces);
 
+	Mesh(ID3D11Device* _p_device, ID3D11DeviceContext* _p_deviceContext, std::vector<Vertex> & _vertices, std::vector<UINT> & _indeces);
 
 private:
 
 	IndexBuffer indexBuffer;
-	ID3D11Device* p_device = nullptr;
 	VertexBuffer<Vertex> vertexBuffer;
-	ID3D11DeviceContext* p_deviceContext = nullptr;
+	ID3D11Device* p_device = nullptr;
 };
 

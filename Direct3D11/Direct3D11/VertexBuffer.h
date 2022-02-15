@@ -14,7 +14,7 @@ class VertexBuffer
 private:
 
 	// stores the buffer
-	Microsoft::WRL::ComPtr<ID3D11Buffer> buffer;
+	ID3D11Buffer* buffer = nullptr;
 	// stores stride
 	std::shared_ptr<UINT> stride;
 	// stores the buffer size (total number of vertices)
@@ -60,20 +60,20 @@ public:
 		//ZeroMemory(&initialData, sizeof(initialData));
 		initialData.pSysMem = _data;
 
-		HRESULT hr = _device->CreateBuffer(&vertDesc, &initialData, buffer.GetAddressOf());
+		HRESULT hr = _device->CreateBuffer(&vertDesc, &initialData, &buffer);
 		return hr;
 	}
 
 	// returns a pointer to the buffer
-	ID3D11Buffer* Get()const
+	ID3D11Buffer* GetBuffer()const
 	{
-		return this->buffer.Get();
+		return this->buffer;
 	}
 
 	// returns the address 
 	ID3D11Buffer* const* GetAddressOf()const
 	{
-		return this->buffer.GetAddressOf();
+		return &this->buffer;
 	}
 
 	// returns the buffer size 

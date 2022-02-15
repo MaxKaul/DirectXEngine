@@ -20,8 +20,8 @@ INT Run::Init(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCmdLine, 
 	 p_device = d3d.GetDevice();
 	 p_deviceContext = d3d.GetDeviceContext();
 
-	 /*error = goManager.Init(p_device, p_deviceContext, p_worldMatrix, p_viewMatrix, p_projectionMatrix);
-	 CheckError(error);*/
+	 error = goManager.Init(p_device, p_deviceContext, p_worldMatrix, p_viewMatrix, p_projectionMatrix);
+	 CheckError(error);
 
 	 error = camera.Init(width, height, 0, 0.15f, 1000.0f);
 	 camera.SetPosition(0.0f, 0.0f, -10.0f);
@@ -54,12 +54,12 @@ INT Run::Init(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCmdLine, 
 	 p_lightRender = &Light::Render;
 	 p_d3dEndScene = &D3D::EndScene;
 
-	 //p_draw = &GameObjectManager::DrawSpawnedObjects;
+	 p_draw = &GameObjectManager::DrawSpawnedObjects;
 	 p_moveObj = &GameObject::Move;
 	 p_drawObj = &GameObject::Draw;
 
-	 //p_spawnObject = &GameObjectManager::SpawnObject;
-	 //p_amountSpawned = &GameObjectManager::AmountOfSpawned;
+	 p_spawnObject = &GameObjectManager::SpawnObject;
+	 p_amountSpawned = &GameObjectManager::AmountOfSpawned;
 
 	 p_cameraUpdate = &Camera::Update;
 	 p_windowUpdate = &Window::Update;
@@ -68,7 +68,7 @@ INT Run::Init(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCmdLine, 
 	 p_materialRender = &Material::Render;
 
 
-	 //p_debugPrint = &HUD::PrintObjectSpawn_Debug;
+	 p_debugPrint = &HUD::PrintObjectSpawn_Debug;
 	 
 	 RunApplication();
 
@@ -79,16 +79,16 @@ INT Run::RunApplication()
 {
 	while (BOOL windowUpdate = (window.*p_windowUpdate)())
 	{
+		FLOAT updateTime = (time.*p_timeUpdate)();
 		UINT fps = (time.*p_fps)();
 		FLOAT deltaTime = (time.*p_deltaTime)();
-		FLOAT updateTime = (time.*p_timeUpdate)();
 
 		FLOAT d3dBeginScene = (d3d.*p_d3dBeginScene)(0, 0, 0);
 
 		INT updateCamera = (camera.*p_cameraUpdate)(deltaTime);
 
 		//if(goManager.AmountOfSpawned() > 0)
-		INT renderMaterial = (material.*p_materialRender)(p_deviceContext, p_worldMatrix, p_viewMatrix, p_projectionMatrix);
+		INT renderMaterial = (material.*p_materialRender)(p_worldMatrix, p_viewMatrix, p_projectionMatrix);
 
 		INT renderLight = (light.*p_lightRender)(p_deviceContext);
 
@@ -97,7 +97,7 @@ INT Run::RunApplication()
 		//INT drawObj = (goManager.*p_draw)();
 		INT drawObj = (gameObject.*p_drawObj)();
 
-		//INT drawFps = (hud.*p_hud)(fps, &camera, 3, true, true, true);
+		INT drawFps = (hud.*p_hud)(fps, &camera, 3, true, true, true);
 
 		//INT drawDebug = (hud.*p_debugPrint)((goManager.*p_amountSpawned)(), debugSpawnObj);
 
@@ -107,8 +107,8 @@ INT Run::RunApplication()
 		if ((GetAsyncKeyState('O') & 0x8000))
 			debugSpawnObj = EGameObjectType::eRobot;
 
-		/*if ((GetAsyncKeyState('K') & 0x8000))
-			INT spawnObj = (goManager.*p_spawnObject)(debugSpawnObj);*/
+		if ((GetAsyncKeyState('K') & 0x8000))
+			INT spawnObj = (goManager.*p_spawnObject)(debugSpawnObj);
 
 		if (GetCursorPos(&mousePoint))
 			if (ScreenToClient(window.GetWindowHandle(), &mousePoint))
@@ -125,8 +125,8 @@ INT Run::RunApplication()
 	}
 
 	light.DeInit();
-	//material.DeInit();
-	//d3d.DeInit();
+	material.DeInit();
+	d3d.DeInit();
 	window.DeInit();
 
 	return 0;

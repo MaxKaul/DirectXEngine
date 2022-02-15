@@ -29,7 +29,7 @@ INT GameObjectManager::SpawnObject(EGameObjectType _type)
 	case EGameObjectType::eNanosuit:
 	{	 
 		//GameObject newObj("Assets\\obj - fbx\\nanosuit.obj", "Assets\\textures\\texture.png", p_device, p_deviceContext, debufWorldMatrix, debufViewMatrix, debufProjectionMatrix);
-		//allGameObjects.push_back(newGo);
+		//allGameObjects.push_back(newObj);
 	}
 		break;
 	default:

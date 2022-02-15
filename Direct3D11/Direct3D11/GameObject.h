@@ -20,7 +20,7 @@ class GameObject
 public: 
 	INT Move();
 	INT Draw();
-	INT Init(std::string _meshFilePath, std::string _textureFilePath, ID3D11Device* _p_device, ID3D11DeviceContext* _p_deviceContext, XMMATRIX* _p_wMatrix, XMMATRIX* _p_vMatrix, XMMATRIX* _p_pMatrix);
+	INT Init(const std::string _meshFilePath, std::string _textureFilePath, ID3D11Device* _p_device, ID3D11DeviceContext* _p_deviceContext, XMMATRIX* _p_wMatrix, XMMATRIX* _p_vMatrix, XMMATRIX* _p_pMatrix);
 
 
 	GameObject() {};
@@ -28,20 +28,21 @@ public:
 	{
 		memcpy(this, &rhs, sizeof(GameObject));
 	}
-	GameObject(std::string _meshFilePath, std::string _textureFilePath, ID3D11Device* _p_device, ID3D11DeviceContext* _p_deviceContext, XMMATRIX* _p_wMatrix, XMMATRIX* _p_vMatrix, XMMATRIX* _p_pMatrix);
+	//GameObject(std::string _meshFilePath, std::string _textureFilePath, ID3D11Device* _p_device, ID3D11DeviceContext* _p_deviceContext, XMMATRIX* _p_wMatrix, XMMATRIX* _p_vMatrix, XMMATRIX* _p_pMatrix);
+
 private:
-	INT(Material::* p_materialRender)(ID3D11DeviceContext*, XMMATRIX*, XMMATRIX*, XMMATRIX*);	
+	INT(Material::* p_materialRender)(XMMATRIX*, XMMATRIX*, XMMATRIX*);	
 
 	VertexBuffer<Vertex> vertexBuffer;
 	IndexBuffer indexBuffer;
-	ID3D11DeviceContext* p_deviceContext;
-	ID3D11Device* p_device;
+	ID3D11Device* p_device = nullptr;
+	ID3D11DeviceContext* p_deviceContext = nullptr;
 
 	vector<Mesh> meshes;
 
 	XMFLOAT4X4 positionMatrix;
 
-	bool LoadModel( std::string& _filePath);
+	bool LoadModel(const std::string& _filePath);
 
 	void ProcessNode(aiNode* _node, const aiScene* _scene);
 	Mesh ProcessMesh(aiMesh* _mesh, const aiScene* _scene);

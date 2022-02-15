@@ -4,7 +4,7 @@ using namespace DirectX;
 
 INT Camera::Init(UINT _screenWidth, UINT _screenHeight, FLOAT _degree, FLOAT _nearClipZ, FLOAT _farCLipZ)
 {
-	pos = XMFLOAT3(0.0f, 0.0f, 0.0f);
+	pos = XMFLOAT3(0.0f, 0.0f, -10.0f);
 	vectorPos = XMLoadFloat3(&pos);
 	rot = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	vectorRot = XMLoadFloat3(&rot);
@@ -76,7 +76,7 @@ XMFLOAT3 Camera::GetRotFloat3()
 INT Camera::Update(FLOAT _dt)
 {
 
-	FLOAT camSpeed = 5 * _dt ;
+	FLOAT camSpeed = 5 * _dt;
 
 
 	if ((GetAsyncKeyState(VK_MBUTTON) & 0x8000))
@@ -95,37 +95,6 @@ INT Camera::Update(FLOAT _dt)
 
 		if ((GetAsyncKeyState(VK_LBUTTON) & 0x8000))
 			AdjRotation((lastMousePosY / 100) * camSpeed * 0.1f, (lastMousePosX / 100) * camSpeed * 0.1f, 0);
-
-
-		//if ((GetAsyncKeyState(VK_RBUTTON) & 0x8000))
-		//	AdjRotation(currRight * camSpeed);
-
-		//if ((GetAsyncKeyState(VK_SPACE) & 0x8000))
-		//{
-		//	posX = 0;
-		//	posY = 0;
-		//	posZ = 0;
-
-		//	rotX = 0;
-		//	rotY = 0;
-		//	rotZ = 1;
-		//}
-
-		//);
-
-		//XMStoreFloat4x4(&viewMatrix, viewMat * (XMMatrixScaling(1, 1, 1) * XMMatrixRotationRollPitchYaw(XMConvertToRadians(rotX), XMConvertToRadians(rotY), XMConvertToRadians(rotZ)) *
-		//	XMMatrixTranslation(posX, posY, posZ)));
-
-		//XMMATRIX translation = XMMatrixTranslation(posX, posY, posZ);
-		//XMMATRIX rotation = XMMatrixRotationRollPitchYaw(rotX, rotY, rotZ);
-		//XMMATRIX localScale = XMMatrixScaling(1.0f, 1.0f, 1.0f);
-
-		//XMMATRIX rotationMatrixX = XMMatrixRotationX(XMConvertToRadians(rotY * _dt));
-		//XMMATRIX rotationMatrixZ = XMMatrixRotationZ(XMConvertToRadians(rotZ * _dt));
-
-		//XMStoreFloat4x4(&viewMatrix, XMLoadFloat4x4(&viewMatrix) * (rotationMatrixX));
-
-		//XMStoreFloat4x4(&viewMatrix, viewMat * (localScale * rotation * translation));
 
 		return 0;
 	}

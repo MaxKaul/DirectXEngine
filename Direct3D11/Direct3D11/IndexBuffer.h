@@ -8,7 +8,7 @@ class IndexBuffer
 private:
 	//IndexBuffer(const IndexBuffer& rhs);
 
-	Microsoft::WRL::ComPtr<ID3D11Buffer> buffer;
+	ID3D11Buffer* buffer = nullptr;
 	UINT bufferSize;
 
 public:
@@ -17,13 +17,13 @@ public:
 	// returns a pointer to the buffer
 	ID3D11Buffer* Get()const
 	{
-		return this->buffer.Get();
+		return this->buffer;
 	}
 
 	// returns the address 
 	ID3D11Buffer* const* GetAddressOf()const
 	{
-		return this->buffer.GetAddressOf();
+		return &this->buffer;
 	}
 
 	// returns the buffer size 
@@ -46,7 +46,7 @@ public:
 		D3D11_SUBRESOURCE_DATA initialData = {};
 		initialData.pSysMem = _data;
 
-		HRESULT hr = _device->CreateBuffer(&indicesDesc, &initialData, buffer.GetAddressOf());
+		HRESULT hr = _device->CreateBuffer(&indicesDesc, &initialData, &buffer);
 
 		return hr;
 	}

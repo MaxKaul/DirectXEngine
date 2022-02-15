@@ -4,34 +4,35 @@
 INT Material::Init(ID3D11Device* _p_d3dDevice, LPCTSTR _textureName, ID3D11DeviceContext* _p_d3dDeviceContext)
 {
 	p_deviceContext = _p_d3dDeviceContext;
+	p_device = _p_d3dDevice;
 
-	INT error = CreateVertexShader(_p_d3dDevice);
+	INT error = CreateVertexShader();
 	CheckError(error);
 
-	error = CreatePixelShader(_p_d3dDevice);
+	error = CreatePixelShader();
 	CheckError(error);
 
-	error = CreateMatrixBuffer(_p_d3dDevice, _p_d3dDeviceContext);
+	error = CreateMatrixBuffer();
 	CheckError(error);
 
-	error = CreateTextureAndSampler(_p_d3dDevice, _textureName);
+	error = CreateTextureAndSampler(_textureName);
 	CheckError(error);
 	return 0;
 }
 
-INT Material::Render(ID3D11DeviceContext* _p_d3dDeviceContext, XMMATRIX* _p_worldMatrix, XMMATRIX* _p_viewMatrix, XMMATRIX* _p_projectionMatrix)
+INT Material::Render(XMMATRIX* _p_worldMatrix, XMMATRIX* _p_viewMatrix, XMMATRIX* _p_projectionMatrix)
 {
 	//Set texture and Sampler State
-	_p_d3dDeviceContext->PSSetShaderResources(0, 1, &p_Texture);
-	_p_d3dDeviceContext->PSSetSamplers(0, 1, &p_SamplerState);
+	p_deviceContext->PSSetShaderResources(0, 1, &p_Texture);
+	p_deviceContext->PSSetSamplers(0, 1, &p_SamplerState);
 
 	//Set Shader Pipeline
-	_p_d3dDeviceContext->VSSetShader(p_VertexShader, nullptr, 0);
-	_p_d3dDeviceContext->PSSetShader(p_PixelShader, nullptr, 0);
-	_p_d3dDeviceContext->IASetInputLayout(p_InputLayout);
+	p_deviceContext->VSSetShader(p_VertexShader, nullptr, 0);
+	p_deviceContext->PSSetShader(p_PixelShader, nullptr, 0);
+	p_deviceContext->IASetInputLayout(p_InputLayout);
 
 	//Set Matrices
-	SetMatricesAndConstBuffer(_p_d3dDeviceContext, _p_worldMatrix, _p_viewMatrix, _p_projectionMatrix);
+	SetMatricesAndConstBuffer(_p_worldMatrix, _p_viewMatrix, _p_projectionMatrix);
 
 	return 0;
 }
@@ -46,7 +47,7 @@ void Material::DeInit()
 }
 
 
-INT Material::CreateVertexShader(ID3D11Device* _p_d3dDevice)
+INT Material::CreateVertexShader()
 {
 	ID3DBlob* p_CompiledShaderCode = nullptr;
 
@@ -58,10 +59,10 @@ INT Material::CreateVertexShader(ID3D11Device* _p_d3dDevice)
 	CheckFailed(hr, 60);
 
 	//Create Shader Code
-	hr = _p_d3dDevice->CreateVertexShader(p_CompiledShaderCode->GetBufferPointer(), p_CompiledShaderCode->GetBufferSize(), nullptr, &p_VertexShader);
+	hr = p_device->CreateVertexShader(p_CompiledShaderCode->GetBufferPointer(), p_CompiledShaderCode->GetBufferSize(), nullptr, &p_VertexShader);
 	CheckFailed(hr, 62);
 
-	INT error = CreateInputLayout(_p_d3dDevice, p_CompiledShaderCode);
+	INT error = CreateInputLayout(p_CompiledShaderCode);
 	CheckError(error);
 
 	SafeRelease<ID3DBlob>(p_CompiledShaderCode);
@@ -69,7 +70,7 @@ INT Material::CreateVertexShader(ID3D11Device* _p_d3dDevice)
 	return 0;
 }
 
-INT Material::CreatePixelShader(ID3D11Device* _p_d3ddevice)
+INT Material::CreatePixelShader( )
 {
 	ID3DBlob* p_CompiledShaderCode = nullptr;
 
@@ -78,7 +79,7 @@ INT Material::CreatePixelShader(ID3D11Device* _p_d3ddevice)
 	HRESULT hr = D3DReadFileToBlob(TEXT("LightingPixelShader.cso"), &p_CompiledShaderCode);
 	CheckFailed(hr, 64);
 
-	hr = _p_d3ddevice->CreatePixelShader(p_CompiledShaderCode->GetBufferPointer(), p_CompiledShaderCode->GetBufferSize(), nullptr, &p_PixelShader);
+	hr = p_device->CreatePixelShader(p_CompiledShaderCode->GetBufferPointer(), p_CompiledShaderCode->GetBufferSize(), nullptr, &p_PixelShader);
 	CheckFailed(hr, 66);
 
 	SafeRelease<ID3DBlob>(p_CompiledShaderCode);
@@ -86,7 +87,7 @@ INT Material::CreatePixelShader(ID3D11Device* _p_d3ddevice)
 	return 0;
 }
 
-INT Material::CreateInputLayout(ID3D11Device* _p_d3dDevice, ID3DBlob* _p_vertexShaderData)
+INT Material::CreateInputLayout(ID3DBlob* _p_vertexShaderData)
 {
 	D3D11_INPUT_ELEMENT_DESC elements[4] = {};
 
@@ -109,7 +110,7 @@ INT Material::CreateInputLayout(ID3D11Device* _p_d3dDevice, ID3DBlob* _p_vertexS
 	elements[3].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
 	elements[3].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
 
-	HRESULT hr = _p_d3dDevice->CreateInputLayout
+	HRESULT hr = p_device->CreateInputLayout
 	(
 		elements,
 		4,
@@ -124,28 +125,28 @@ INT Material::CreateInputLayout(ID3D11Device* _p_d3dDevice, ID3DBlob* _p_vertexS
 	return 0;
 }
 
-INT Material::CreateMatrixBuffer(ID3D11Device* _p_d3dDevice, ID3D11DeviceContext* _p_d3dDeviceContext)
+INT Material::CreateMatrixBuffer()
 {
-	HRESULT hr = constantBuffer.Init(_p_d3dDevice, _p_d3dDeviceContext);
+	HRESULT hr = constantBuffer.Init(p_device, p_deviceContext);
 	CheckFailed(hr, 61);
 
 	return 0;
 }
 
-INT Material::SetMatricesAndConstBuffer(ID3D11DeviceContext* _p_d3dDeviceContext, XMMATRIX* _p_worldMatrix, XMMATRIX* _p_viewMatrix, XMMATRIX* _p_projectionMatrix)
+INT Material::SetMatricesAndConstBuffer(XMMATRIX* _p_worldMatrix, XMMATRIX* _p_viewMatrix, XMMATRIX* _p_projectionMatrix)
 {
 	if(!(constantBuffer.ApplyChanges(_p_worldMatrix, _p_viewMatrix, _p_projectionMatrix, p_deviceContext)))
 		return 0;
 
-	_p_d3dDeviceContext->VSSetConstantBuffers(0, 1, constantBuffer.GetAddressOf());
+	p_deviceContext->VSSetConstantBuffers(0, 1, constantBuffer.GetAddressOf());
 
 	return 0;
 }
 
-INT Material::CreateTextureAndSampler(ID3D11Device* _p_d3dDevice, LPCTSTR _textureName)
+INT Material::CreateTextureAndSampler(LPCTSTR _textureName)
 {
 	// Create Texture
-	HRESULT hr = CreateWICTextureFromFile(_p_d3dDevice, _textureName, nullptr, &p_Texture, 0);
+	HRESULT hr = CreateWICTextureFromFile(p_device, _textureName, nullptr, &p_Texture, 0);
 	CheckFailed(hr, 63);
 
 	// Create Sampler State
@@ -157,7 +158,7 @@ INT Material::CreateTextureAndSampler(ID3D11Device* _p_d3dDevice, LPCTSTR _textu
 
 	desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
 
-	hr = _p_d3dDevice->CreateSamplerState(&desc, &p_SamplerState);
+	hr = p_device->CreateSamplerState(&desc, &p_SamplerState);
 	CheckFailed(hr, 65);
 
 	return 0;

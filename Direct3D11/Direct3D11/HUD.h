@@ -7,6 +7,7 @@
 #include "Time.h"
 #include "Camera.h"
 #include "Mesh.h"
+#include "Utils.h"
 #include "GameObjectManager.h"
 
 
@@ -18,7 +19,7 @@ public:
 
 	INT PrintObjectSpawn_Debug(INT _amountOfSpawned, EGameObjectType _currentSelected);
 
-	HUD() {  };
+	HUD() {};
 
 private:
 	XMFLOAT3(Camera::* p_camPos)() = 0;

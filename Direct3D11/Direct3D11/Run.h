@@ -51,7 +51,7 @@ private:
 	GameObject gameObject{};
 
 	Light::LightData lightData = {};
-	//GameObjectManager goManager = {};
+	GameObjectManager goManager = {};
 
 	HWND windowHandle = window.GetWindowHandle();
 
@@ -72,12 +72,12 @@ private:
 
 	BOOL(Window::* p_windowUpdate)();
 
-	//INT(GameObjectManager::* p_draw)();
+	INT(GameObjectManager::* p_draw)();
 	INT(GameObject::* p_moveObj)();
 
 	INT(Camera::* p_cameraUpdate)(FLOAT);
 
-	//INT(GameObjectManager::* p_amountSpawned)();
+	INT(GameObjectManager::* p_amountSpawned)();
 
 
 	INT(HUD::* p_debugPrint)(INT, EGameObjectType);
@@ -88,8 +88,8 @@ private:
 
 	INT(HUD::* p_hud)(UINT, Camera*, INT, BOOL, BOOL, BOOL);
 
-	//INT(GameObjectManager::* p_spawnObject)(EGameObjectType);
+	INT(GameObjectManager::* p_spawnObject)(EGameObjectType);
 
-	INT(Material::* p_materialRender)(ID3D11DeviceContext*, XMMATRIX*, XMMATRIX*, XMMATRIX*);
+	INT(Material::* p_materialRender)(XMMATRIX*, XMMATRIX*, XMMATRIX*);
 };
 

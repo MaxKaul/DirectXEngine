@@ -1,1 +1,8 @@
-﻿  Direct3D11.vcxproj -> F:\DirectXEngine\Direct3D11\Direct3D11\x64\Debug\Direct3D11.exe
+﻿  Run.cpp
+F:\DirectXEngine\Direct3D11\Direct3D11\GameObjectManager.h(32,24): warning C4267: 'return': conversion from 'size_t' to 'INT', possible loss of data
+F:\DirectXEngine\Direct3D11\Direct3D11\Run.cpp(30,20): warning C4244: '=': conversion from 'FLOAT' to 'INT', possible loss of data
+F:\DirectXEngine\Direct3D11\Direct3D11\Run.cpp(86,23): warning C4244: 'initializing': conversion from 'INT' to 'FLOAT', possible loss of data
+F:\DirectXEngine\Direct3D11\Direct3D11\Run.cpp(118,13): warning C4244: 'initializing': conversion from 'LONG' to 'FLOAT', possible loss of data
+F:\DirectXEngine\Direct3D11\Direct3D11\Run.cpp(119,13): warning C4244: 'initializing': conversion from 'LONG' to 'FLOAT', possible loss of data
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/FORCE' specification
+  Direct3D11.vcxproj -> F:\DirectXEngine\Direct3D11\Direct3D11\x64\Debug\Direct3D11.exe
