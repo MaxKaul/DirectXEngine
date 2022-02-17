@@ -35,7 +35,7 @@ public:
 
 	void SetLookPos(XMFLOAT3 _lookPos);
 
-	void SetMouseMousePos(FLOAT _x, FLOAT _y);
+	INT SetMouseMousePos(XMFLOAT2 _pos);
 
 private:
 	void UpdateViewMatrix();

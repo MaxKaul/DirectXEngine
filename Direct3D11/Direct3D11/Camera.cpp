@@ -212,10 +212,13 @@ void Camera::SetLookPos(XMFLOAT3 _lookPos)
 	SetRotation(pitch, yaw, 0.0f);
 }
 
-void Camera::SetMouseMousePos(FLOAT _x, FLOAT _y)
+INT Camera::SetMouseMousePos(XMFLOAT2 _pos)
 {
-	currMousePosX = _x;
-	currMousePosY = _y;
+	currMousePosX = _pos.x;
+	currMousePosY = _pos.y;
+
+
+	return 0;
 
 	//lastMousePosX = currMousePosX;
 	//lastMousePosY = currMousePosY;

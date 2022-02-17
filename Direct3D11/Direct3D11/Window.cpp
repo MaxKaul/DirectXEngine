@@ -1,4 +1,5 @@
 #include "Window.h"
+#include "imgui/imgui_impl_win32.h"
 
 INT Window::Init(HINSTANCE _hInstance, UINT _width, UINT _height)
 {
@@ -45,6 +46,7 @@ INT Window::Init(HINSTANCE _hInstance, UINT _width, UINT _height)
 
 	// -->Shows the Window<--
 	ShowWindow(p_hWnd, SW_SHOW);
+	ImGui_ImplWin32_Init(p_hWnd);
 	SetFocus(p_hWnd);
 
 	return 0;

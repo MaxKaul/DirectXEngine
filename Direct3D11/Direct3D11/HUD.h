@@ -15,8 +15,6 @@ public:
 	INT Init(ID3D11Device* _p_device, ID3D11DeviceContext* _p_deviceContext);
 	INT Draw_Text(UINT _p_fps, Camera* _p_cam, INT _lineAmount, BOOL _displayFps, BOOL _displayCamPos, BOOL _displayBoxPos);
 
-	INT PrintMousePos(float _mousePosX, float _mousePosY);
-
 private:
 	XMFLOAT3(Camera::* p_camPos)() = 0;
 	XMFLOAT3(Camera::* p_camRot)() = 0;

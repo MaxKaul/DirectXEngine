@@ -56,7 +56,11 @@ INT Run::Init(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCmdLine, 
 	 p_windowUpdate = &Window::Update;
 	 p_deltaTime = &Time::GetDeltaTime;
 	 p_d3dBeginScene = &D3D::BeginScene;
+	 p_updateGui = &ImguiManager::Update;
 	 p_materialRender = &Material::Render;
+	 p_setMousePos = &Camera::SetMouseMousePos;
+	 p_endUpdateGui = &ImguiManager::EndUpdate;
+	 p_getMousePos = &ImguiManager::GetMousePos;
 
 
 	 RunApplication();
@@ -68,35 +72,27 @@ INT Run::RunApplication()
 {
 	while (BOOL windowUpdate = (window.*p_windowUpdate)())
 	{
-		UINT fps = (time.*p_fps)();
-		FLOAT deltaTime = (time.*p_deltaTime)();
 		FLOAT updateTime = (time.*p_timeUpdate)();
 
 		FLOAT d3dBeginScene = (d3d.*p_d3dBeginScene)(0, 0, 0);
 
-		INT updateCamera = (camera.*p_cameraUpdate)(deltaTime);
+		INT updateCamera = (camera.*p_cameraUpdate)((time.*p_deltaTime)());
 
 		INT renderMaterial = (material.*p_materialRender)(p_d3dContext, p_worldMatrix, p_viewMatrix, p_projectionMatrix);
 
 		INT renderLight = (light.*p_lightRender)(p_d3dContext);
 
-		INT moveObj = (gameObject.*p_moveObj)(deltaTime);
+		INT moveObj = (gameObject.*p_moveObj)((time.*p_deltaTime)());
 
 		INT drawObj = (gameObject.*p_drawObj)();
 
-		INT drawFps = (hud.*p_hud)(fps, &camera, 3, true, true, true);
+		INT updateGUI = (imguiManager.*p_updateGui)();
 
+		INT drawFps = (hud.*p_hud)((time.*p_fps)(), &camera, 3, true, true, true);
 
-		if (GetCursorPos(&mousePoint))
-			if (ScreenToClient(window.GetWindowHandle(), &mousePoint))
-			{
-				FLOAT x = mousePoint.x;
-				FLOAT y = mousePoint.y;
+		INT mousePos = (camera.*p_setMousePos)((imguiManager.*p_getMousePos)());
 
-				camera.SetMouseMousePos(x, y);
-
-				hud.PrintMousePos(x, y);
-			}
+		INT endUpdateGUI = (imguiManager.*p_endUpdateGui)();
 
 		INT endScene = (d3d.*p_d3dEndScene)();
 	}

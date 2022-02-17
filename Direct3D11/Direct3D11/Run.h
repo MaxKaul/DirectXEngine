@@ -9,6 +9,7 @@
 #include "Light.h"
 #include "HUD.h"
 #include "GameObject.h"
+#include "ImguiManager.h"
 
 class Run
 {
@@ -45,6 +46,7 @@ private:
 	Camera camera = {};
 	Material material = {};
 	GameObject gameObject{};
+	ImguiManager imguiManager{};
 	Light::LightData lightData = {};
 
 	XMMATRIX* p_viewMatrix = camera.GetViewMatrix();
@@ -64,9 +66,17 @@ private:
 
 	BOOL(Window::* p_windowUpdate)();
 
+	INT(ImguiManager::* p_updateGui)();
+
 	INT(GameObject::* p_moveObj)(FLOAT);
 
 	INT(Camera::* p_cameraUpdate)(FLOAT);
+
+	INT(ImguiManager::* p_endUpdateGui)();
+
+	INT(Camera::* p_setMousePos)(XMFLOAT2);
+
+	XMFLOAT2(ImguiManager::* p_getMousePos)();
 
 	INT(D3D::* p_d3dBeginScene)(FLOAT, FLOAT, FLOAT);
 

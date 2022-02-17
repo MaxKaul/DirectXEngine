@@ -1,9 +1,16 @@
 #include "D3D.h"
+#include "imgui/imgui_impl_dx11.h"
 
 INT D3D::Init(HWND _hwnd, UINT _width, UINT _height, BOOL _fullscreen)
 {
-	HRESULT hr;
 
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGui::StyleColorsDark();
+
+
+	HRESULT hr;
 	// 1. Set up the presentation parameter
 
 	DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
@@ -42,9 +49,9 @@ INT D3D::Init(HWND _hwnd, UINT _width, UINT _height, BOOL _fullscreen)
 		D3D11_SDK_VERSION,
 		&swapChainDesc,
 		&p_DXGISwapChain,
-		&p_D3DDevice,
+		&p_device,
 		&choosenFeatureLevel,
-		&p_D3DDeviceContext
+		&p_deviceContext
 	);
 	CheckFailed(hr, 20);
 
@@ -53,7 +60,7 @@ INT D3D::Init(HWND _hwnd, UINT _width, UINT _height, BOOL _fullscreen)
 	hr = p_DXGISwapChain->GetBuffer(0, IID_PPV_ARGS(&p_BackBufferTexture));
 	CheckFailed(hr, 22);
 
-	hr = p_D3DDevice->CreateRenderTargetView(p_BackBufferTexture, nullptr, &p_RenderTargetView);
+	hr = p_device->CreateRenderTargetView(p_BackBufferTexture, nullptr, &p_RenderTargetView);
 	CheckFailed(hr, 24);
 
 	SafeRelease<ID3D11Texture2D>(p_BackBufferTexture);
@@ -68,10 +75,10 @@ INT D3D::Init(HWND _hwnd, UINT _width, UINT _height, BOOL _fullscreen)
 	depthStencilTextureDesc.ArraySize = 1; // at least one texture
 	depthStencilTextureDesc.SampleDesc.Count = 1; // should be always 1
 
-	hr = p_D3DDevice->CreateTexture2D(&depthStencilTextureDesc, nullptr, &p_depthStencilTexture);
+	hr = p_device->CreateTexture2D(&depthStencilTextureDesc, nullptr, &p_depthStencilTexture);
 	CheckFailed(hr, 26);
 
-	hr = p_D3DDevice->CreateDepthStencilView(p_depthStencilTexture, nullptr, &p_depthStencilView);
+	hr = p_device->CreateDepthStencilView(p_depthStencilTexture, nullptr, &p_depthStencilView);
 	CheckFailed(hr, 28);
 
 	SafeRelease<ID3D11Texture2D>(p_depthStencilTexture);
@@ -81,7 +88,7 @@ INT D3D::Init(HWND _hwnd, UINT _width, UINT _height, BOOL _fullscreen)
 	rasterizerDesc.FillMode = D3D11_FILL_SOLID;
 	rasterizerDesc.CullMode = D3D11_CULL_BACK;
 
-	hr = p_D3DDevice->CreateRasterizerState(&rasterizerDesc, &p_rasterizerState);
+	hr = p_device->CreateRasterizerState(&rasterizerDesc, &p_rasterizerState);
 	CheckFailed(hr, 29);
 
 	//Set Viewport
@@ -94,9 +101,11 @@ INT D3D::Init(HWND _hwnd, UINT _width, UINT _height, BOOL _fullscreen)
 	viewPort.MaxDepth = 1.0f;
 
 	//Set Up Render pipeline
-	p_D3DDeviceContext->OMSetRenderTargets(1, &p_RenderTargetView, p_depthStencilView);
-	p_D3DDeviceContext->RSSetViewports(1, &viewPort);
-	p_D3DDeviceContext->RSSetState(p_rasterizerState);
+	p_deviceContext->OMSetRenderTargets(1, &p_RenderTargetView, p_depthStencilView);
+	p_deviceContext->RSSetViewports(1, &viewPort);
+	p_deviceContext->RSSetState(p_rasterizerState);
+
+	ImGui_ImplDX11_Init(p_device, p_deviceContext);
 
 	return 0;
 }
@@ -105,10 +114,10 @@ INT D3D::BeginScene(FLOAT _red, FLOAT _green, FLOAT _blue)
 {
 	//Clear Back Buffer
 	FLOAT backgroundColor[] = { _red, _green, _blue, 1.0f };
-	p_D3DDeviceContext->ClearRenderTargetView(p_RenderTargetView, backgroundColor);
+	p_deviceContext->ClearRenderTargetView(p_RenderTargetView, backgroundColor);
 
 	//Clear depth buffer
-	p_D3DDeviceContext->ClearDepthStencilView(p_depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0xffffffff);
+	p_deviceContext->ClearDepthStencilView(p_depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0xffffffff);
 
 	return 0;
 }
@@ -124,8 +133,8 @@ INT D3D::EndScene()
 void D3D::DeInit()
 {
 	SafeRelease<ID3D11DepthStencilView>(p_depthStencilView);
-	SafeRelease<ID3D11Device>(p_D3DDevice);
-	SafeRelease<ID3D11DeviceContext>(p_D3DDeviceContext);
+	SafeRelease<ID3D11Device>(p_device);
+	SafeRelease<ID3D11DeviceContext>(p_deviceContext);
 	SafeRelease<IDXGISwapChain>(p_DXGISwapChain);
 	SafeRelease<ID3D11RenderTargetView>(p_RenderTargetView);
 	SafeRelease<ID3D11RasterizerState>(p_rasterizerState);
