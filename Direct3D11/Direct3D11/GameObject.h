@@ -17,10 +17,11 @@
 class GameObject
 {
 public: 
-	bool Init(const std::string& _filePath, ID3D11Device* _p_device,ID3D11DeviceContext* _p_deviceContext);
+	//bool Init(const std::string& _filePath, ID3D11Device* _p_device,ID3D11DeviceContext* _p_deviceContext);
+	GameObject(const std::string& _filePath, ID3D11Device* _p_device,ID3D11DeviceContext* _p_deviceContext);
 	INT Draw();
 
-	XMFLOAT4X4* GetWorldMatrix() { return &worldMatrix; }
+	//XMFLOAT4X4* GetWorldMatrix() { return &worldMatrix; }
 
 	INT Move(FLOAT _dt);
 
@@ -33,7 +34,7 @@ private:
 
 	vector<Mesh> meshes;
 
-	XMFLOAT4X4 worldMatrix = {};
+	//XMFLOAT4X4 worldMatrix = {};
 
 	bool LoadModel(const std::string& _filePath);
 

@@ -14,6 +14,7 @@ public:
 
 	XMMATRIX* GetViewMatrix();
 	XMMATRIX* GetProjectionMatrix();
+	XMFLOAT4X4* GetWorldMatrix();
 
 	XMVECTOR GetPosVector();
 	XMFLOAT3 GetPosFloat3();
@@ -53,7 +54,9 @@ private:
 	XMFLOAT3 rot;
 	
 	XMMATRIX viewMatrix = {};
+	XMMATRIX worldMatrix = {};
 	XMMATRIX projectionMatrix = {};
+
 
 	XMVECTOR defaultForward = XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
 	XMVECTOR defaultBackward = XMVectorSet(0.0f, 0.0f, -1.0f, 0.0f);

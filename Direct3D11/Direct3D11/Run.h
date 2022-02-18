@@ -9,6 +9,7 @@
 #include "Light.h"
 #include "HUD.h"
 #include "GameObject.h"
+#include "GameObjectManager.h"
 #include "ImguiManager.h"
 
 class Run
@@ -27,6 +28,7 @@ private:
 	HINSTANCE hInstance;
 	HINSTANCE hPrevInstance;
 
+	UINT spawnAmount = 2;
 
 	UINT width;
 	UINT height;
@@ -34,8 +36,8 @@ private:
 
 
 	D3D d3d = {};
-	ID3D11Device* p_d3dDevice;
-	ID3D11DeviceContext* p_d3dContext;
+	ID3D11Device* p_device;
+	ID3D11DeviceContext* p_deviceContext;
 
 	POINT mousePoint;
 
@@ -45,12 +47,13 @@ private:
 	Window window = {};
 	Camera camera = {};
 	Material material = {};
-	GameObject gameObject{};
+	//GameObject gameObject{};
+	GameObjectManager goManager{};
 	ImguiManager imguiManager{};
 	Light::LightData lightData = {};
 
 	XMMATRIX* p_viewMatrix = camera.GetViewMatrix();
-	XMFLOAT4X4* p_worldMatrix = gameObject.GetWorldMatrix();
+	XMFLOAT4X4* p_worldMatrix = camera.GetWorldMatrix();
 	XMMATRIX* p_projectionMatrix = camera.GetProjectionMatrix();
 
 

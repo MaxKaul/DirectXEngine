@@ -17,8 +17,8 @@ INT Run::Init(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCmdLine, 
 	 error = d3d.Init(window.GetWindowHandle(), width, height, isFullScreen);
 	 CheckError(error);
 
-	 p_d3dDevice = d3d.GetDevice();
-	 p_d3dContext = d3d.GetDeviceContext();
+	 p_device = d3d.GetDevice();
+	 p_deviceContext = d3d.GetDeviceContext();
 
 	 error = camera.Init(width, height, 0, 0.15f, 1000.0f);
 	 camera.SetPosition(0.0f, 0.0f, -10.0f);
@@ -27,7 +27,7 @@ INT Run::Init(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCmdLine, 
 	 error = time.Init();
 	 CheckError(error);
 
-	 error = material.Init(p_d3dDevice, TEXT("F:\\texture.png"), p_d3dContext);
+	 error = material.Init(p_device, TEXT("F:\\texture.png"), p_deviceContext);
 	 CheckError(error);
 
 	 lightData.LightDirection = { -1.0f, 0.0f, 1.0f };
@@ -35,13 +35,16 @@ INT Run::Init(HINSTANCE _hInstance, HINSTANCE _hPrevInstance, LPSTR _lpCmdLine, 
 	 lightData.LightDiffuseColor = { 0.8f, 0.8f, 0.8f, 1.0f };
 	 lightData.LightIntensity = 5.0f;
 
-	 error = light.Init(p_d3dDevice, lightData);
+	 error = light.Init(p_device, lightData);
 	 CheckError(error);
 
-	 error = gameObject.Init("F:\\Robot.fbx", p_d3dDevice, p_d3dContext);
+	 error = goManager.Init(p_device, p_deviceContext, p_worldMatrix, p_viewMatrix, p_projectionMatrix, spawnAmount);
 	 CheckError(error);
 
-	 error = hud.Init(p_d3dDevice, p_d3dContext);
+	 //error = gameObject.Init("F:\\Robot.fbx", p_d3dDevice, p_d3dContext);
+	 //CheckError(error);
+
+	 error = hud.Init(p_device, p_deviceContext);
 	 CheckError(error);
 
 
@@ -78,9 +81,9 @@ INT Run::RunApplication()
 
 		INT updateCamera = (camera.*p_cameraUpdate)((time.*p_deltaTime)());
 
-		INT renderMaterial = (material.*p_materialRender)(p_d3dContext, p_worldMatrix, p_viewMatrix, p_projectionMatrix);
+		INT renderMaterial = (material.*p_materialRender)(p_deviceContext, p_worldMatrix, p_viewMatrix, p_projectionMatrix);
 
-		INT renderLight = (light.*p_lightRender)(p_d3dContext);
+		INT renderLight = (light.*p_lightRender)(p_deviceContext);
 
 		INT moveObj = (gameObject.*p_moveObj)((time.*p_deltaTime)());
 

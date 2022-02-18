@@ -1,15 +1,13 @@
 #include "GameObject.h"
 
-bool GameObject::Init(const std::string& _filePath, ID3D11Device* _p_device, ID3D11DeviceContext* _p_deviceContext)
+GameObject::GameObject(const std::string& _filePath, ID3D11Device* _p_device, ID3D11DeviceContext* _p_deviceContext)
 {
 	p_device = _p_device;
 	p_deviceContext = _p_deviceContext;
 
 	//Initialize World Transformation-Matrix
-	XMStoreFloat4x4(&worldMatrix, XMMatrixIdentity());
 
 	LoadModel(_filePath);
-	return false;
 }
 
 bool GameObject::LoadModel(const std::string& _filePath)
@@ -81,6 +79,7 @@ Mesh GameObject::ProcessMesh(aiMesh* _mesh, const aiScene* _scene)
 	return Mesh(this->p_device, p_deviceContext, vertices, indices);
 }
 
+
 INT GameObject::Draw()
 {
 	//Set Mesh Data
@@ -144,7 +143,7 @@ INT GameObject::Move(FLOAT _dt)
 		XMMATRIX localScale = XMMatrixScaling(1.0f, 1.0f, 1.0f);
 
 
-		XMStoreFloat4x4(&worldMatrix, localScale * rotation * translation);
+		//XMStoreFloat4x4(&worldMatrix, localScale * rotation * translation);
 
 		return 0;
 	}

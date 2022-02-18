@@ -16,7 +16,6 @@ public:
 	virtual INT Update() = 0;
 	virtual INT DeInit() = 0;
 
-	EComponentType componentType{  };
 
 //protected:
 //	GameObject gameObject;

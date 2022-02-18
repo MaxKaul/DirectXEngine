@@ -6,13 +6,6 @@
 #define CheckFailed(hr, error) if (FAILED(hr)) return error;
 
 
-enum class EComponentType
-{
-	E_mesh,
-	E_light
-};
-
-
 template<typename T>
 void SafeRelease(T*& _obj)
 {
